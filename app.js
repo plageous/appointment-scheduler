@@ -1,15 +1,14 @@
 import express from 'express';
 
 const app = express();
-
 const PORT = 3000;
 
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    res.send(`Hello, World!`);
+    res.sendFile(`${import.meta.dirname}/views/home.html`);
 });
 
-// start server, listen on PORT
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
