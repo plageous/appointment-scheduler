@@ -14,27 +14,22 @@ app.get('/', (req, res) => {
     res.sendFile(`${import.meta.dirname}/views/home.html`);
 });
 
-app.post('/appointment-scheduler', (req, res) => {
+app.post('/submit-appointment', (req, res) => {
     const appointment = {
         fname: req.body.fname,
         lname: req.body.lname,
-        date: req.body.date,
-        time: req.body.time,
+        date: req.body.date ? req.body.date : "none",
+        time: req.body.time ? req.body.time : "none",
         timestamp: new Date()
     };
     appointments.push(appointment);
 
-    res.send(appointments)
+    res.sendFile(`${import.meta.dirname}/views/submission.html`);
 })
-
 
 app.get('/admin', (req, res) => {
     res.send(appointments);
 });
-
-app.post('/thank-you', (req, res) => {
-    res.sendFile(`${import.meta.dirname}/views/submission.html`);
-})
 
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
