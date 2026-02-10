@@ -1,11 +1,14 @@
 import express from 'express';
 
 const app = express();
+
 const PORT = 3000;
-const appointments = [];
 
 app.use(express.static('public'));
-app.use(express.urlencoded({ extended:true }))
+
+app.use(express.urlencoded({ extended:true }));
+
+const appointments = [];
 
 app.get('/', (req, res) => {
     res.sendFile(`${import.meta.dirname}/views/home.html`);
